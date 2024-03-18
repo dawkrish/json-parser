@@ -21,24 +21,36 @@ func main() {
 	//}
 
 	fmt.Println("---------------------------")
-	fileContent, err := os.ReadFile(TEST_DIRECTORY + "/" + "one.json")
-	if err != nil {
-		fmt.Println("err : ", err)
-		os.Exit(1)
-	}
+	//fileContent, err := os.ReadFile(TEST_DIRECTORY + "/" + "step2/invalid_1.json")
+	//if err != nil {
+	//	fmt.Println("err : ", err)
+	//	os.Exit(1)
+	//}
+	//
+	//tokens, err := Tokenize(string(fileContent))
+	//if err != nil {
+	//	fmt.Println("err : ", err)
+	//	os.Exit(1)
+	//}
+	//for _, tr := range tokens {
+	//	for _, t := range tr {
+	//		fmt.Printf("%v  ", t)
+	//	}
+	//	fmt.Println()
+	//}
 
-	tokens, err := Tokenize(string(fileContent))
-	if err != nil {
-		fmt.Println("err : ", err)
-		os.Exit(1)
+	inputs := [][]Token{
+		{{Type: LEFT_SQUARE_BRACE, Value: "["}, {Type: NUMBER, Value: "10"}, {Type: NUMBER, Value: "12"}},
 	}
-	for _, tr := range tokens {
-		for _, t := range tr {
-			fmt.Printf("%v  ", t)
+	for _, inp := range inputs {
+		TYPE, err := getValueType(inp)
+		if err != nil {
+			fmt.Println("error : ", err)
+			os.Exit(1)
 		}
-		fmt.Println()
+		fmt.Println("The resultant type : ", TYPE)
 	}
-
+	fmt.Println("---------------------------")
 	//var emptyInterface interface{}
 	//decoder := json.NewDecoder(file)
 	//err = decoder.Decode(&emptyInterface)
